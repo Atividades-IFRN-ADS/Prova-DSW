@@ -1,0 +1,485 @@
+/* SGJogos · Jogos Interclasses 2026 · IFRN Campus Pau dos Ferros */
+
+:root {
+    --papel: #f4f2ed;
+    --branco: #ffffff;
+    --tinta: #16181d;
+    --tinta-suave: #5c5f67;
+    --linha: #dcd8ce;
+    --verde: #12733f;
+    --verde-claro: #e2efe6;
+
+    --fonte-texto: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Arial, sans-serif;
+    --fonte-titulo: "Bahnschrift SemiCondensed", "Bahnschrift", "Avenir Next Condensed", "Roboto Condensed",
+        "Ubuntu Condensed", "Arial Narrow", var(--fonte-texto);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: var(--papel);
+    color: var(--tinta);
+    font-family: var(--fonte-texto);
+    font-size: 1rem;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+}
+
+a {
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+h1,
+h2,
+h3 {
+    font-family: var(--fonte-titulo);
+    font-stretch: condensed;
+    font-weight: 700;
+    line-height: 1.05;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+}
+
+.conteudo {
+    width: 100%;
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ---------- Cabeçalho ---------- */
+
+.cabecalho {
+    background: var(--tinta);
+    color: var(--branco);
+}
+
+.cabecalho .conteudo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    min-height: 64px;
+}
+
+.marca {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    text-decoration: none;
+}
+
+.marca strong {
+    font-family: var(--fonte-titulo);
+    font-stretch: condensed;
+    font-size: 1.6rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
+.marca strong::before {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin-right: 8px;
+    background: var(--verde);
+    transform: translateY(-2px);
+}
+
+.marca span {
+    color: #a9acb3;
+    font-size: 0.8rem;
+}
+
+.menu ul {
+    display: flex;
+    gap: 24px;
+}
+
+.menu a {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 6px 0;
+    border-bottom: 2px solid transparent;
+}
+
+.menu a:hover {
+    border-bottom-color: var(--verde);
+}
+
+/* ---------- Área principal ---------- */
+
+main.conteudo {
+    flex: 1;
+    padding-top: 40px;
+    padding-bottom: 64px;
+}
+
+.topo {
+    padding-bottom: 24px;
+    margin-bottom: 32px;
+    border-bottom: 2px solid var(--tinta);
+}
+
+.sobretitulo {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--verde);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+h1 {
+    font-size: clamp(2.2rem, 6vw, 3.6rem);
+}
+
+.descricao {
+    max-width: 60ch;
+    margin-top: 10px;
+    color: var(--tinta-suave);
+}
+
+h2 {
+    margin: 48px 0 16px;
+    font-size: 1.5rem;
+}
+
+.trilha {
+    margin-bottom: 20px;
+    color: var(--tinta-suave);
+    font-size: 0.85rem;
+}
+
+.trilha a {
+    color: var(--tinta);
+    font-weight: 600;
+    text-decoration-color: var(--linha);
+    text-underline-offset: 3px;
+}
+
+.trilha a:hover {
+    text-decoration-color: var(--verde);
+}
+
+.aviso {
+    color: var(--tinta-suave);
+    font-style: italic;
+}
+
+/* ---------- Busca ---------- */
+
+.busca {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-width: 380px;
+    margin-bottom: 24px;
+}
+
+.busca label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.busca input {
+    padding: 10px 12px;
+    border: 1px solid var(--tinta);
+    border-radius: 0;
+    background: var(--branco);
+    color: var(--tinta);
+    font: inherit;
+}
+
+.busca input:focus {
+    outline: 3px solid var(--verde-claro);
+    border-color: var(--verde);
+}
+
+.sem-resultado {
+    padding: 32px 16px;
+    border: 1px dashed var(--linha);
+    color: var(--tinta-suave);
+    text-align: center;
+}
+
+/* ---------- Cards de equipe ---------- */
+
+.grade {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 20px;
+    background: var(--branco);
+    border: 1px solid var(--linha);
+    border-top: 8px solid var(--tinta);
+}
+
+.card h3 {
+    font-size: 1.8rem;
+}
+
+.card dl {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 6px 12px;
+    font-size: 0.9rem;
+}
+
+.card dt {
+    color: var(--tinta-suave);
+}
+
+.card dd {
+    font-weight: 600;
+    text-align: right;
+}
+
+.card .link {
+    margin-top: auto;
+    padding-top: 12px;
+    border-top: 1px solid var(--linha);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.card .link::after {
+    content: " →";
+}
+
+.card .link:hover {
+    color: var(--verde);
+}
+
+/* ---------- Lista de modalidades ---------- */
+
+.lista-modalidades {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    column-gap: 24px;
+    border-top: 1px solid var(--tinta);
+}
+
+.lista-modalidades a {
+    display: flex;
+    justify-content: space-between;
+    padding: 14px 4px;
+    border-bottom: 1px solid var(--linha);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.lista-modalidades a::after {
+    content: "→";
+    color: var(--tinta-suave);
+}
+
+.lista-modalidades a:hover {
+    color: var(--verde);
+}
+
+/* ---------- Números em destaque ---------- */
+
+.numeros {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    border: 1px solid var(--linha);
+    background: var(--branco);
+}
+
+.numeros div {
+    padding: 18px 20px;
+    border-right: 1px solid var(--linha);
+}
+
+.numeros div:last-child {
+    border-right: none;
+}
+
+.numeros dt {
+    color: var(--tinta-suave);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.numeros dd {
+    margin-top: 4px;
+    font-family: var(--fonte-titulo);
+    font-stretch: condensed;
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 1.15;
+    font-variant-numeric: tabular-nums;
+    overflow-wrap: anywhere;
+}
+
+/* ---------- Tabelas ---------- */
+
+.tabela {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--branco);
+    font-size: 0.95rem;
+    font-variant-numeric: tabular-nums;
+}
+
+th,
+td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--linha);
+    text-align: left;
+    vertical-align: top;
+}
+
+th {
+    border-bottom: 2px solid var(--tinta);
+    background: var(--papel);
+    color: var(--tinta-suave);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+tbody tr:hover {
+    background: #faf9f6;
+}
+
+td a {
+    font-weight: 600;
+    text-decoration-color: var(--linha);
+    text-underline-offset: 3px;
+}
+
+td a:hover {
+    color: var(--verde);
+    text-decoration-color: var(--verde);
+}
+
+td.vazio {
+    padding: 28px 14px;
+    color: var(--tinta-suave);
+    font-style: italic;
+    text-align: center;
+}
+
+/* Modalidades de um atleta: coletivas com quadrado cheio, individuais com quadrado vazado */
+
+.modalidades {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 16px;
+}
+
+.modalidades a::before {
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin-right: 6px;
+    background: var(--verde);
+}
+
+.modalidades a.individual::before {
+    background: transparent;
+    box-shadow: inset 0 0 0 2px var(--verde);
+}
+
+/* ---------- Rodapé ---------- */
+
+.rodape {
+    border-top: 1px solid var(--linha);
+    color: var(--tinta-suave);
+    font-size: 0.8rem;
+}
+
+.rodape .conteudo {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+/* ---------- Telas pequenas ---------- */
+
+@media (max-width: 640px) {
+    .cabecalho .conteudo {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 4px;
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+
+    .marca span {
+        display: none;
+    }
+
+    main.conteudo {
+        padding-top: 28px;
+    }
+
+    .numeros div {
+        border-right: none;
+        border-bottom: 1px solid var(--linha);
+    }
+
+    .numeros div:last-child {
+        border-bottom: none;
+    }
+}
+
+/* Variação para dados de texto (ex.: ficha do técnico) */
+
+.numeros.ficha dd {
+    font-family: var(--fonte-texto);
+    font-stretch: normal;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.4;
+}

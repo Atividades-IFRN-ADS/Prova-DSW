@@ -1,0 +1,38 @@
+{% extends "jogos/base.html" %}
+
+{% block titulo %}Equipes{% endblock %}
+
+{% block conteudo %}
+<header class="topo">
+    <span class="sobretitulo">Jogos Interclasses 2026</span>
+    <h1>Equipes inscritas</h1>
+</header>
+
+<section class="grade" id="lista-equipes">
+    {% for equipe in equipes %}
+        <article class="card" style="border-top-color: green;">
+            <h3>{{ equipe.nome }}</h3>
+            <dl>
+                <dt>Curso</dt>
+                <dd>{{ equipe.curso }}</dd>
+                <dt>Técnico</dt>
+                <dd>{{ equipe.tecnico_nome|default:"não definido" }}</dd>
+                <dt>Atletas</dt>
+                <dd>{{ equipe.total_atletas }}</dd>
+            </dl>
+            <a class="link" href="{% url 'jogos:equipe' equipe.id %}">Ver equipe</a>
+        </article>
+    {% empty %}
+        <p class="sem-resultado">Nenhuma equipe encontrada.</p>
+    {% endfor %}
+</section>
+
+<h2>Modalidades</h2>
+<ul class="lista-modalidades">
+    {% for modalidade in modalidades %}
+        <li><a href="{% url 'jogos:modalidade' modalidade.id %}">{{ modalidade.nome }}</a></li>
+    {% empty %}
+        <li><span class="aviso">Nenhuma modalidade cadastrada.</span></li>
+    {% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,74 @@
+{% extends "jogos/base.html" %}
+
+{% block titulo %}{{ equipe.nome }}{% endblock %}
+
+{% block conteudo %}
+<nav class="trilha"><a href="{% url 'jogos:index' %}">Equipes</a> / {{ equipe.nome }}</nav>
+
+<header class="topo">
+    <span class="sobretitulo">Equipe</span>
+    <h1>{{ equipe.nome }}</h1>
+    <p class="descricao">{{ equipe.curso }} · {{ equipe.total_atletas }} atletas</p>
+</header>
+
+{% if equipe.tecnico_nome %}
+    <h2>Técnico</h2>
+    <dl class="numeros ficha">
+        <div>
+            <dt>Nome</dt>
+            <dd>{{ equipe.tecnico_nome }}</dd>
+        </div>
+        <div>
+            <dt>E-mail</dt>
+            <dd>{{ equipe.tecnico_email }}</dd>
+        </div>
+        <div>
+            <dt>Telefone</dt>
+            <dd>{{ equipe.tecnico_telefone }}</dd>
+        </div>
+    </dl>
+{% else %}
+    <p class="aviso">Esta equipe ainda não tem um técnico cadastrado.</p>
+{% endif %}
+
+<h2>Atletas</h2>
+<div class="tabela">
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Matrícula</th>
+                <th>Modalidades</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for atleta in atletas %}
+                <tr>
+                    <td>{{ atleta.nome }}</td>
+                    <td>{{ atleta.matricula }}</td>
+                    <td>
+                        <ul class="modalidades">
+                            {% for modalidade in atleta.modalidades.all %}
+                                <li>
+                                    <a
+                                        class="{% if modalidade.tipo == 'individual' %}individual{% endif %}"
+                                        href="{% url 'jogos:modalidade' modalidade.id %}"
+                                    >
+                                        {{ modalidade.nome }}
+                                    </a>
+                                </li>
+                            {% empty %}
+                                <li><span class="aviso">Nenhuma modalidade</span></li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td class="vazio" colspan="3">Nenhum atleta inscrito.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

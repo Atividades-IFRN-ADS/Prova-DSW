@@ -1,0 +1,51 @@
+{% extends "jogos/base.html" %}
+
+{% block titulo %}{{ modalidade.nome }}{% endblock %}
+
+{% block conteudo %}
+<nav class="trilha"><a href="{% url 'jogos:index' %}">Equipes</a> / {{ modalidade.nome }}</nav>
+
+<header class="topo">
+    <span class="sobretitulo">Modalidade</span>
+    <h1>{{ modalidade.nome }}</h1>
+</header>
+
+<dl class="numeros">
+    <div>
+        <dt>Tipo</dt>
+        <dd>{{ modalidade.get_tipo_display }}</dd>
+    </div>
+    <div>
+        <dt>Máximo por equipe</dt>
+        <dd>{{ modalidade.max_atletas }}</dd>
+    </div>
+    <div>
+        <dt>Atletas inscritos</dt>
+        <dd>{{ modalidade.total_atletas }}</dd>
+    </div>
+</dl>
+
+<h2>Atletas inscritos</h2>
+<div class="tabela">
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Equipe</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for atleta in atletas %}
+                <tr>
+                    <td>{{ atleta.nome }}</td>
+                    <td><a href="{% url 'jogos:equipe' atleta.equipe.id %}">{{ atleta.equipe.nome }}</a></td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td class="vazio" colspan="2">Nenhum atleta inscrito nesta modalidade.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
